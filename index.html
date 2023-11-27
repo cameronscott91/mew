@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      position: relative;
+      height: 100vh;
+      margin: 0;
+      background-color: black; /* Set black background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .text-container {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      text-align: left;
+    }
+
+    @keyframes changeFont {
+      0% {
+        font-family: 'Arial', sans-serif;
+      }
+      5% {
+        font-family: 'Times New Roman', serif;
+      }
+      10% {
+        font-family: 'Courier New', monospace;
+      }
+      15% {
+        font-family: 'Verdana', sans-serif;
+      }
+      20% {
+        font-family: 'Georgia', serif;
+      }
+      25% {
+        font-family: 'Quicksand', sans-serif; /* Replace Comic Sans MS with Quicksand */
+      }
+      30% {
+        font-family: 'Open Sans', sans-serif; /* Replace Impact with Open Sans */
+      }
+      35% {
+        font-family: 'Tahoma', sans-serif;
+      }
+      40% {
+        font-family: 'Palatino Linotype', serif;
+      }
+      45% {
+        font-family: 'Lucida Console', monospace;
+      }
+      50% {
+        font-family: 'Trebuchet MS', sans-serif;
+      }
+      55% {
+        font-family: 'Helvetica', sans-serif;
+      }
+      60% {
+        font-family: 'Garamond', serif;
+      }
+      65% {
+        font-family: 'Futura', sans-serif;
+      }
+      70% {
+        font-family: 'Copperplate Gothic', sans-serif;
+      }
+      75% {
+        font-family: 'Book Antiqua', serif;
+      }
+      80% {
+        font-family: 'Roboto', sans-serif; /* New font */
+      }
+      85% {
+        font-family: 'Oswald', sans-serif; /* New font */
+      }
+      90% {
+        font-family: 'Lobster', cursive; /* New font */
+      }
+      95% {
+        font-family: 'Montserrat', sans-serif; /* New font */
+      }
+      100% {
+        font-family: 'Baskerville', serif;
+      }
+    }
+
+    .changing-font {
+      animation: changeFont var(--duration, 0.5s) infinite linear; /* Maintain font animation */
+      font-size: 50px; /* Adjust font size */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Outer glow effect */
+      text-align: center;
+    }
+
+    .small-text {
+      font-size: 18px; /* Adjust the font size for "coming soon" */
+    }
+
+    .bottom-text {
+      position: absolute;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      bottom: 20px;
+    }
+
+    .bottom-text.left {
+      left: 20px;
+    }
+
+    .bottom-text.right {
+      right: 20px;
+    }
+
+    .additional-text {
+      position: absolute;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      left: 20px;
+      top: 50px; /* Adjust top position */
+      min-width: 50vw;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-container">
+    <p class="changing-font">MEW <br> <span class="small-text"></span></p>
+    <p class="additional-text">
+      Mew is a biological entity that exists in the form of a moving-image work, comprising of 5 episodes with a score created by Harve. Mew exists as shots of the natural world in the UK and will often shape shift into forms that borrow from science fiction and psychedelic imagery from the 60’s. It is sometimes harmonious and sometimes abrasive.
+    </p>
+  </div>
+
+  <div class="bottom-text left">
+    Cameron Scott
+  </div>
+
+  <div class="bottom-text right">
+    Score by Harve
+  </div>
+
+  <script>
+    const element = document.querySelector('.changing-font');
+
+    function updateFont() {
+      // Constant and moderately fast font change
+      const duration = 2; // Adjust the duration as needed (in seconds)
+
+      // Apply font change to the central text
+      element.style.setProperty('--duration', `${duration}s`);
+      const randomFont = getRandomFont();
+      element.style.fontFamily = randomFont;
+
+      // Randomly change text color for the central text
+      const randomColor = getRandomColor();
+      element.style.color = randomColor;
+    }
+
+    function getRandomFont() {
+      const fonts = [
+        'Arial', 'Times New Roman', 'Courier New', 'Verdana', 'Georgia', 'Quicksand',
+        'Open Sans', 'Tahoma', 'Palatino Linotype', 'Lucida Console', 'Trebuchet MS',
+        'Helvetica', 'Garamond', 'Futura', 'Copperplate Gothic', 'Book Antiqua',
+        'Roboto', 'Oswald', 'Lobster', 'Montserrat', 'Baskerville'
+      ];
+      return fonts[Math.floor(Math.random() * fonts.length)];
+    }
+
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    // Update font properties of central text more randomly
+    setInterval(updateFont, 1000); // Update every second
+  </script>
+
+</body>
+</html>
